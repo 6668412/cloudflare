@@ -16,7 +16,7 @@ def spider(url,port):
         r = requests.get(url,timeout=2)
         if r.status_code == 400:
             if 'cloudflare' in r.text:
-                print (url.strip()+'\t'+'success\n')
+                print (url.strip()+'\t'+'Success\n')
                 control.release()
             else:
                 control.release()
@@ -41,7 +41,7 @@ if __name__ == "__main__":
     control = threading.Semaphore(num)
     for ip_pass in ipverified:
         ip_pass = ip_pass.strip()
-        print (ip_pass+'\n')
+        print (ip_pass)
         for ports in range(start_port,end_port+1):
             control.acquire()
             t = threading.Thread(target=spider,args=(ip_pass,ports,))
